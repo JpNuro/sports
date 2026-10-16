@@ -1,4 +1,3 @@
-
 /* ==========================================
    SPORTS CENTRAL
    T02 — Sistema CSS
@@ -219,11 +218,17 @@ form {
 
 /* 6. CALENDÁRIO */
 #calendario ul {
-    padding-left: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding-left: var(--space-4);
 }
 
 #calendario li {
-    margin-block: var(--space-3);
+    flex: 1 1 16rem;
+    min-width: 0;
+    margin-block: 0;
+    overflow-wrap: anywhere;
 }
 
 time {
@@ -233,6 +238,7 @@ time {
 
 /* 7. CLASSIFICAÇÃO */
 #classificacao > div {
+    max-width: 100%;
     overflow-x: auto;
     border: var(--border-width) solid var(--color-border);
     border-radius: var(--radius-md);
@@ -377,12 +383,10 @@ footer p {
     *::before,
     *::after {
         scroll-behavior: auto;
-        transition-duration: 0.01ms;
-        animation-duration: 0.01ms;
-        animation-iteration-count: 1;
+        transition: none !important;
+        animation: none !important;
     }
 }
-
 
 /* T03 — Layouts com Flexbox e Grid */
 
@@ -409,34 +413,54 @@ header nav ul {
     grid-column: 1 / -1;
 }
 
+/* Cartões: propriedades consolidadas */
 #noticias > article {
     min-width: 0;
     margin-top: 0;
     overflow-wrap: anywhere;
+    container-type: inline-size;
 }
 
-/* FLEXBOX: calendário */
-#calendario ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    padding-left: var(--space-4);
+/* T05 — Container query nos cartões de notícias */
+#noticias > article p {
+    max-width: 70ch;
 }
 
-#calendario li {
-    flex: 1 1 16rem;
-    min-width: 0;
-    margin-block: 0;
-    overflow-wrap: anywhere;
+@container (max-width: 20rem) {
+    #noticias > article {
+        padding: var(--space-3);
+    }
+
+    #noticias > article h3 {
+        font-size: var(--font-size-base);
+    }
 }
 
-/* TABELA: evita que ultrapasse o espaço disponível */
-#classificacao > div {
-    max-width: 100%;
-    overflow-x: auto;
-}
 
-#classificacao table {
+/* Imagens responsivas */
+
+.imagem-destaque {
     width: 100%;
-    border-collapse: collapse;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-md);
+    margin-block: var(--space-4);
+}
+
+.imagem-noticia {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-4);
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 480px) {
+    .imagem-destaque,
+    .imagem-noticia {
+        border-radius: var(--radius-sm);
+    }
 }
