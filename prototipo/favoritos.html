@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Veja as notícias que você salvou nos favoritos do Sports Central.">
+    <title>Favoritos | Sports Central</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" aria-label="Sports Central - página inicial">
+            <strong>Sports Central</strong>
+        </a>
+
+        <nav aria-label="Navegação principal">
+            <ul>
+                <li><a href="index.html#inicio">Início</a></li>
+                <li><a href="index.html#noticias">Notícias</a></li>
+                <li><a href="index.html#calendario">Jogos</a></li>
+                <li><a href="index.html#classificacao">Classificação</a></li>
+                <li><a href="favoritos.html" aria-current="page">Favoritos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="inicio">
+        <section aria-labelledby="favoritos-titulo">
+            <h1 id="favoritos-titulo">Notícias favoritas</h1>
+            <p>Aqui ficam as notícias que você escolheu guardar.</p>
+
+            <p id="mensagem-favoritos" role="status" aria-live="polite">
+                Carregando favoritos...
+            </p>
+
+            <div id="lista-favoritos"></div>
+
+            <p>
+                <a href="index.html#noticias">Voltar para as notícias</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sports Central. Projeto acadêmico demonstrativo.</p>
+        <p>Seus favoritos ficam salvos neste navegador.</p>
+    </footer>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>
