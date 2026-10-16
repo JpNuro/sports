@@ -464,3 +464,21 @@ header nav ul {
         border-radius: var(--radius-sm);
     }
 }
+
+
+/* T06 — Integração controlada do Bootstrap */
+
+#noticias > article.card {
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+#noticias > article.card h3 {
+    color: var(--color-text);
+}
+
+#noticias > article.card p {
+    color: var(--color-text-muted);
+}
