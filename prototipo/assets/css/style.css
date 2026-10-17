@@ -279,13 +279,17 @@ tbody tr:hover {
 }
 
 /* 8. FORMULÁRIO */
+
 form label {
     display: block;
     margin-bottom: var(--space-2);
     font-weight: 700;
 }
 
-input {
+/* Apenas campos de texto e e-mail */
+form input[type="text"],
+form input[type="email"] {
+    display: block;
     width: 100%;
     min-height: 2.75rem;
     padding: var(--space-3);
@@ -295,22 +299,71 @@ input {
     background: var(--color-background);
 }
 
-input::placeholder {
+form input::placeholder {
     color: var(--color-text-muted);
     opacity: 1;
 }
 
-input:focus-visible,
-button:focus-visible,
+/* Checkbox: tamanho natural */
+form input[type="checkbox"] {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0 var(--space-2) 0 0;
+    vertical-align: middle;
+    accent-color: var(--color-primary);
+}
+
+/* Foco visível */
+form input:focus-visible,
+form select:focus-visible,
+form textarea:focus-visible,
+form button:focus-visible,
 a:focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 3px;
 }
 
-input:invalid:not(:placeholder-shown) {
+/* Validação: somente campos de texto e e-mail */
+form input[type="text"]:invalid:not(:placeholder-shown),
+form input[type="email"]:invalid:not(:placeholder-shown),
+form select:invalid {
     border-color: var(--color-danger);
-    box-shadow: 0 0 0 1px var(--color-danger);
 }
+
+/* Seleção de esporte */
+form select {
+    display: block;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    background: var(--color-background);
+    font: inherit;
+}
+
+/* Área de preferências */
+form .campo-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-block: var(--space-4);
+}
+
+form .campo-checkbox input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0;
+}
+
+form .campo-checkbox label {
+    margin: 0;
+    font-weight: 400;
+}
+
+
 
 /* 9. BOTÕES */
 button {
@@ -398,6 +451,7 @@ header nav ul {
     gap: var(--space-3);
 }
 
+
 /* GRID: notícias em colunas responsivas */
 #noticias {
     display: grid;
@@ -406,20 +460,44 @@ header nav ul {
         minmax(min(100%, 16rem), 1fr)
     );
     gap: var(--space-4);
-    align-items: start;
+    align-items: stretch;
 }
 
-#noticias > h2 {
+#noticias > h2,
+#noticias > .filtro-noticias {
     grid-column: 1 / -1;
 }
 
-/* Cartões: propriedades consolidadas */
+/* Cartões de notícias */
 #noticias > article {
+    width: 100%;
     min-width: 0;
-    margin-top: 0;
+    margin: 0;
     overflow-wrap: anywhere;
     container-type: inline-size;
 }
+
+/* Imagens dos cartões */
+#noticias > article .imagem-noticia {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+/* Evita que textos e botões alarguem os cartões */
+#noticias > article h3,
+#noticias > article p,
+#noticias > article button {
+    min-width: 0;
+    max-width: 100%;
+}
+
+#noticias > article button {
+    white-space: normal;
+}
+
 
 /* T05 — Container query nos cartões de notícias */
 #noticias > article p {
@@ -481,4 +559,39 @@ header nav ul {
 
 #noticias > article.card p {
     color: var(--color-text-muted);
+}
+
+
+/* T07 — Filtro e favoritos */
+
+.filtro-noticias {
+    grid-column: 1 / -1;
+    padding: var(--space-4);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+}
+
+.filtro-noticias label {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-weight: 700;
+}
+
+.filtro-noticias input {
+    width: 100%;
+}
+
+#resultado-filtro {
+    margin-bottom: 0;
+    color: var(--color-text-muted);
+}
+
+#noticias > article[hidden] {
+    display: none;
+}
+
+button[data-favoritar][aria-pressed="true"] {
+    border-color: var(--color-primary);
+    background: var(--color-primary-hover);
 }

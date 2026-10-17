@@ -27,6 +27,7 @@
                 <li><a href="#noticias">Notícias</a></li>
                 <li><a href="#calendario">Jogos</a></li>
                 <li><a href="#classificacao">Classificação</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
             </ul>
         </nav>
     </header>
@@ -48,11 +49,24 @@
                     com equipes disputando as primeiras posições.
                 </p>
                 <a href="#calendario">Confira os próximos jogos</a>
+                <!-- Alteração para incluir favoritar com JS pra mim lembrar onde eu tô mexendo -->
+                <button type="button" data-favoritar aria-pressed="false">
+                    ☆ Favoritar notícia
+                </button>
             </article>
         </section>
 
         <section id="noticias" aria-labelledby="noticias-titulo">
             <h2 id="noticias-titulo">Últimas notícias</h2>
+
+            <div class="filtro-noticias">
+                <label for="buscar-noticia">Buscar notícia</label>
+                <input type="search" id="buscar-noticia" placeholder="Digite um título..."
+                    aria-describedby="resultado-filtro">
+                <p id="resultado-filtro" role="status" aria-live="polite">
+                    Exibindo todas as notícias.
+                </p>
+            </div>
 
             <article class="card">
                 <img class="imagem-noticia" src="assets/img/noticia-internacional.jpg" width="800" height="450"
@@ -63,6 +77,10 @@
                     equilibrada contra o Grêmio.
                 </p>
                 <p><small>Notícia fictícia para demonstração.</small></p>
+                <!-- Alteração para incluir favoritar com JS pra mim lembrar onde eu tô mexendo -->
+                <button type="button" data-favoritar aria-pressed="false">
+                    ☆ Favoritar notícia
+                </button>
             </article>
 
             <article class="card">
@@ -74,6 +92,52 @@
                     confrontos da próxima semana.
                 </p>
                 <p><small>Notícia fictícia para demonstração.</small></p>
+                <!-- Alteração para incluir favoritar com JS pra mim lembrar onde eu tô mexendo -->
+                <button type="button" data-favoritar aria-pressed="false">
+                    ☆ Favoritar notícia
+                </button>
+            </article>
+
+            <!-- Notícia de basquete -->
+            <article class="card">
+                <img class="imagem-noticia" src="assets/img/noticia-basquete.jpg" width="800" height="450"
+                    alt="Jogadores disputando a posse de bola em uma partida de basquete" loading="lazy"
+                    decoding="async">
+
+                <h3>Basquete: confronto promete equilíbrio até o fim</h3>
+
+                <p>
+                    As equipes chegam preparadas para um duelo marcado pela
+                    intensidade defensiva e pela disputa por cada posse de bola.
+                    O aproveitamento nos arremessos pode ser decisivo para
+                    definir o resultado.
+                </p>
+
+                <p><small>Notícia fictícia para demonstração.</small></p>
+
+                <button type="button" data-favoritar aria-pressed="false">
+                    ☆ Favoritar notícia
+                </button>
+            </article>
+
+            <!-- Notícia de Fórmula 1 -->
+            <article class="card">
+                <img class="imagem-noticia" src="assets/img/noticia-formula-1.jpg" width="800" height="450"
+                    alt="Carro de corrida percorrendo uma pista de automobilismo" loading="lazy" decoding="async">
+
+                <h3>Fórmula 1: estratégia pode decidir a próxima corrida</h3>
+
+                <p>
+                    A escolha dos pneus, o momento das paradas nos boxes e o
+                    gerenciamento do desgaste serão fatores importantes.
+                    Uma decisão estratégica pode mudar a posição dos pilotos
+                </p>
+
+                <p><small>Notícia fictícia para demonstração.</small></p>
+
+                <button type="button" data-favoritar aria-pressed="false">
+                    ☆ Favoritar notícia
+                </button>
             </article>
         </section>
 
@@ -131,22 +195,54 @@
             </div>
         </section>
 
-        <section aria-labelledby="contato-titulo">
+        <section id="receber-novidades" aria-labelledby="contato-titulo">
             <h2 id="contato-titulo">Receba novidades</h2>
             <p>
-                A área de cadastro será implementada nas próximas etapas.
+                Cadastre-se para acompanhar as novidades do Sports Central e escolher
+                quais atualizações esportivas mais interessam a você.
             </p>
 
-            <form action="#" method="get">
-                <label for="email">Seu e-mail</label>
-                <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@exemplo.com"
-                    required>
+            <form id="form-novidades">
+                <div>
+                    <label for="nome">Seu nome</label>
+                    <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como podemos te chamar?"
+                        minlength="2" required>
+                </div>
+
+                <div>
+                    <label for="email">Seu e-mail</label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@exemplo.com"
+                        required>
+                </div>
+
+                <div>
+                    <label for="esporte-favorito">Esporte de interesse</label>
+                    <select id="esporte-favorito" name="esporte" required>
+                        <option value="" selected disabled>Selecione uma opção</option>
+                        <option value="futebol">Futebol</option>
+                        <option value="basquete">Basquete</option>
+                        <option value="volei">Vôlei</option>
+                        <option value="formula-1">Fórmula 1</option>
+                        <option value="outros">Outros esportes</option>
+                    </select>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="aceite-novidades" name="aceite" required>
+                    <label for="aceite-novidades">
+                        Quero receber novidades e entendo que este é um cadastro demonstrativo.
+                    </label>
+                </div>
+
                 <button type="submit">Cadastrar</button>
+                <button type="reset">Limpar formulário</button>
+                <p id="mensagem-cadastro" role="status" aria-live="polite"></p>
             </form>
+
             <p>
                 <small>
-                    Formulário demonstrativo; o cadastro ainda não está
-                    conectado a um serviço.
+                    Demonstração acadêmica: os dados ficam salvos somente neste navegador,
+                    não são enviados por e-mail nem para um servidor.
                 </small>
             </p>
         </section>
@@ -156,6 +252,11 @@
         <p>&copy; 2026 Sports Central. Projeto acadêmico demonstrativo.</p>
         <p>Conteúdo esportivo fictício, criado para fins educacionais.</p>
     </footer>
+
+    <!-- T08: versão estável oficial do jQuery para interação com notícias -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <!-- T07: conecta favoritos e filtro ao JavaScript do projeto -->
+    <script src="js/app.js" defer></script>
 </body>
 
 </html>
